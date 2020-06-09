@@ -7,7 +7,7 @@
     tools:context=".AdicionarItem">
 
     <EditText
-        android:id="@+id/nome"
+        android:id="@+id/editNome"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -37,10 +37,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
+        app:layout_constraintTop_toBottomOf="@+id/editNome" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioCategoria"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,32 +54,32 @@
         app:layout_constraintTop_toBottomOf="@+id/categoria">
 
         <RadioButton
-            android:id="@+id/radioButton12"
+            android:id="@+id/radioButtonCond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cat_condimentos" />
 
         <RadioButton
-            android:id="@+id/radioButton11"
+            android:id="@+id/radioButtonBol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cat_bolacha" />
 
         <RadioButton
-            android:id="@+id/radioButton10"
+            android:id="@+id/radioButtonFrio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cat_frios" />
 
         <RadioButton
-            android:id="@+id/radioButton9"
+            android:id="@+id/radioButtonHigi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cat_higiene" />
     </RadioGroup>
 
     <TextView
-        android:id="@+id/quantidade"
+        android:id="@+id/textQuant"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toStartOf="@+id/botao_menos"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
 
     <Button
         android:id="@+id/botao_menos"
@@ -102,13 +102,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@android:drawable/arrow_down_float"
-        android:text="-"
-        app:layout_constraintEnd_toStartOf="@+id/text_quant"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        android:background="@drawable/minus"
+        android:onClick="rmItens"
+        app:layout_constraintEnd_toStartOf="@+id/quantidade"
+        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
 
-    <EditText
-        android:id="@+id/text_quant"
+    <TextView
+        android:id="@+id/quantidade"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -116,10 +116,11 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="0"
         android:inputType="number"
+        android:text="0"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/botao_mais"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
 
     <Button
         android:id="@+id/botao_mais"
@@ -128,10 +129,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@android:drawable/arrow_up_float"
-        android:text="+"
+        android:background="@drawable/plus_symbol_round_button"
+        android:onClick="addItens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
 
     <TextView
         android:id="@+id/preco"
@@ -143,13 +144,13 @@
         android:gravity="center"
         android:text="@string/preco_item"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/editPreco"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantidade" />
+        app:layout_constraintTop_toBottomOf="@+id/textQuant" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/editPreco"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -160,14 +161,17 @@
         android:hint="0,00"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_quant" />
+        app:layout_constraintTop_toBottomOf="@+id/quantidade" />
 
     <Button
         android:id="@+id/botao_salvar"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:onClick="adicionarItem"
         android:text="@string/adionar_item"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/preco" />

@@ -2,9 +2,16 @@ package com.rodmor.listadecompras;
 
 public class Item {
     String nome;
-    int categoria;
+    Categoria categoria;
     int quantidade;
     float preco;
+
+    public Item(String nome, Categoria categoria, int quantidade, float preco) {
+        setNome(nome);
+        setCategoria(categoria);
+        setQuantidade(quantidade);
+        setPreco(preco);
+    }
 
     public String getNome() {
         return nome;
@@ -14,11 +21,11 @@ public class Item {
         this.nome = nome;
     }
 
-    public int getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
