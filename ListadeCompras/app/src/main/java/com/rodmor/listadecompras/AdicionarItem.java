@@ -1,6 +1,10 @@
 package com.rodmor.listadecompras;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +23,9 @@ public class AdicionarItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_item);
+
+        DBHelper db = new DBHelper(getBaseContext());
+        db.getWritableDatabase();
     }
 
     public void addItens(View view) {
@@ -39,10 +46,9 @@ public class AdicionarItem extends AppCompatActivity {
     }
 
     public void adicionarItem(View view) {
-        EditText textNome = findViewById(R.id.editNome);
-        String nome = textNome.getText().toString();
 
-        // categoria
+        // Busca das informações na tela
+        EditText textNome = findViewById(R.id.editNome);
         RadioGroup radioCategoria = findViewById(R.id.radioCategoria);
         Categoria categoria;
         switch (radioCategoria.getCheckedRadioButtonId()) {
@@ -61,13 +67,19 @@ public class AdicionarItem extends AppCompatActivity {
             default:
                 categoria = OUTROS;
         }
-
         TextView textQuant = findViewById(R.id.quantidade);
-        int quant = Integer.parseInt(textQuant.getText().toString());
-
         EditText textPreco = findViewById(R.id.editPreco);
-        float preco = Float.parseFloat(textPreco.getText().toString());
 
-        Item novo = new Item(nome, categoria, quant, preco);
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getWritableDatabase();
+
+        ContentValues ctv = new ContentValues();
+        ctv.put("nome", textNome.getText().toString());
+        ctv.put("categoria", categoria.toString());
+        ctv.put("quantidade", textQuant.getText().toString());
+        ctv.put("valor", textPreco.getText().toString());
+
+        banco.insert("lista", null, ctv);
+        finish();
     }
 }

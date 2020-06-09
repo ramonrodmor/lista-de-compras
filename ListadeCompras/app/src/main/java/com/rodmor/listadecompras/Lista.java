@@ -19,4 +19,10 @@ public class Lista extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AdicionarItem.class);
         startActivity(intent);
     }
+
+    public void onResume () {
+        super.onResume();
+
+        
+    }
 }

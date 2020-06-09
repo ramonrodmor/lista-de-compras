@@ -22,4 +22,6 @@
     <string name="cat_higiene">Higiene e limpeza</string>
     <string name="quant_item">Quantidade: </string>
     <string name="preco_item">Preço: </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DBHelper db = new DBHelper(getBaseContext());
     }
 
     /** Chamada da tela de gerenciamento de listas */
@@ -24,4 +26,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Compras.class);
         startActivity(intent);
     }
+
 }
