@@ -15,12 +15,13 @@ public class MainActivity extends AppCompatActivity {
 
     /** Chamada da tela de gerenciamento de listas */
     public void iniciarListas(View view) {
-        Intent intent = new Intent(getApplicationContext(), ListaDeCompras.class);
+        Intent intent = new Intent(getApplicationContext(), Lista.class);
         startActivity(intent);
     }
 
     /** Chamada da tela de compras */
     public void iniciarCompras(View view) {
-        // Do something in response to button
+        Intent intent = new Intent(getApplicationContext(), Compras.class);
+        startActivity(intent);
     }
 }

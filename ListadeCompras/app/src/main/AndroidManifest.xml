@@ -9,10 +9,13 @@
         android:roundIcon="@drawable/man_pushing_a_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AdicionarItem"></activity>
         <activity
-            android:name=".ListaDeCompras"
-            android:label="@string/title_activity_lista_de_compras"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".Lista"
+            android:label="@string/title_activity_lista" />
+        <activity
+            android:name=".Compras"
+            android:label="@string/title_activity_compras" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
