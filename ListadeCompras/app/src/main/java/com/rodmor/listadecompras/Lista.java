@@ -43,7 +43,7 @@ public class Lista extends AppCompatActivity {
 
         for (int i = 0; i < listaItens.size(); i++) {
 
-            Recy
+            // TODO: testar listviews em vez de fragments
             FragmentoItem fragmento = new FragmentoItem(listaItens.get(i));
             transaction = manager.beginTransaction();
             transaction.add(R.id.fragment_container, fragmento, null);
