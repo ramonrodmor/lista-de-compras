@@ -7,21 +7,24 @@
 
     <!-- Tela de listas -->
     <string name="title_activity_lista">Lista de Compras</string>
-    <string name="adionar_item">Adicionar ítem</string>
+    <string name="adionar_item">Adicionar item</string>
 
     <!-- Tela de compras -->
     <string name="title_activity_compras">Compras</string>
-    <string name="soma_das_compras">Total das compras: </string>
+    <string name="soma_das_compras">Total das compras:</string>
+    <string name="text_rs">" "R$" "</string>
 
     <!-- Tela de adicionar itens -->
-    <string name="nome_item">Nome do ítem</string>
-    <string name="categoria_item">Selecione a categoria do ítem: </string>
+    <string name="nome_item">Nome do item</string>
+    <string name="categoria_item">Selecione a categoria do item: </string>
     <string name="cat_condimentos">Condimento</string>
     <string name="cat_bolacha">Bolachas e pães</string>
     <string name="cat_frios">Frios e carnes</string>
     <string name="cat_higiene">Higiene e limpeza</string>
     <string name="quant_item">Quantidade: </string>
     <string name="preco_item">Preço: </string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="salvar_lista">Salvar lista</string>
+    <string name="dialog_adicionado">O item foi adicionado!</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

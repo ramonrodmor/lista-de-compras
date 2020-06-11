@@ -6,8 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".AdicionarItem">
 
+    <Button
+        android:id="@+id/botao_salvar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimary"
+        android:onClick="adicionarItem"
+        android:text="@string/adionar_item"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
-        android:id="@+id/editNome"
+        android:id="@+id/edit_nome"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -18,13 +32,13 @@
         android:ems="10"
         android:gravity="center_vertical"
         android:hint="@string/nome_item"
-        android:inputType="textPersonName"
+        android:textColor="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/categoria"
+        android:id="@+id/text_categoria"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -34,13 +48,14 @@
         android:layout_marginRight="16dp"
         android:gravity="center_vertical"
         android:text="@string/categoria_item"
+        android:textColor="@color/design_default_color_on_secondary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNome" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_nome" />
 
     <RadioGroup
-        android:id="@+id/radioCategoria"
+        android:id="@+id/radio_categoria"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -51,35 +66,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoria">
+        app:layout_constraintTop_toBottomOf="@+id/text_categoria">
 
         <RadioButton
-            android:id="@+id/radioButtonCond"
+            android:id="@+id/radio_button_cond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cat_condimentos" />
+            android:text="@string/cat_condimentos"
+            android:textColor="@color/design_default_color_on_secondary" />
 
         <RadioButton
-            android:id="@+id/radioButtonBol"
+            android:id="@+id/radio_button_bol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cat_bolacha" />
+            android:text="@string/cat_bolacha"
+            android:textColor="@color/design_default_color_on_secondary" />
 
         <RadioButton
-            android:id="@+id/radioButtonFrio"
+            android:id="@+id/radio_button_frio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cat_frios" />
+            android:text="@string/cat_frios"
+            android:textColor="@color/design_default_color_on_secondary" />
 
         <RadioButton
-            android:id="@+id/radioButtonHigi"
+            android:id="@+id/radio_button_higi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cat_higiene" />
+            android:text="@string/cat_higiene"
+            android:textColor="@color/design_default_color_on_secondary" />
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textQuant"
+        android:id="@+id/text_quant"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -89,26 +108,27 @@
         android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/quant_item"
+        android:textColor="@color/design_default_color_on_secondary"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/botao_menos"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_categoria" />
 
     <Button
         android:id="@+id/botao_menos"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/minus"
+        android:background="@drawable/botao_menos"
         android:onClick="rmItens"
-        app:layout_constraintEnd_toStartOf="@+id/quantidade"
-        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
+        app:layout_constraintEnd_toStartOf="@+id/text_quantidade"
+        app:layout_constraintTop_toBottomOf="@+id/radio_categoria" />
 
     <TextView
-        android:id="@+id/quantidade"
+        android:id="@+id/text_quantidade"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -118,39 +138,42 @@
         android:gravity="center"
         android:inputType="number"
         android:text="0"
+        android:textColor="@color/design_default_color_on_secondary"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/botao_mais"
-        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_categoria" />
 
     <Button
         android:id="@+id/botao_mais"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/plus_symbol_round_button"
+        android:background="@drawable/botao_mais"
         android:onClick="addItens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_categoria" />
 
     <TextView
-        android:id="@+id/textPreco"
+        android:id="@+id/text_preco"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/preco_item"
+        android:textColor="@color/design_default_color_on_secondary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPreco"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/edit_preco"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textQuant" />
+        app:layout_constraintTop_toBottomOf="@+id/text_quant" />
 
     <EditText
-        android:id="@+id/editPreco"
+        android:id="@+id/edit_preco"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -160,20 +183,8 @@
         android:gravity="center"
         android:hint="0,00"
         android:inputType="numberDecimal"
+        android:textColor="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantidade" />
-
-    <Button
-        android:id="@+id/botao_salvar"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
-        android:onClick="adicionarItem"
-        android:text="@string/adionar_item"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPreco" />
+        app:layout_constraintTop_toBottomOf="@+id/text_quantidade" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

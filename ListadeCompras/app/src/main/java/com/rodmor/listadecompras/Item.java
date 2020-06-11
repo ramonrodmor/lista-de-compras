@@ -1,12 +1,17 @@
 package com.rodmor.listadecompras;
 
 public class Item {
-    String nome;
-    Categoria categoria;
-    int quantidade;
-    float preco;
+    private String nome;
+    private int categoria;
+    // 1 PARA CONDIMENTOS
+    // 2 PARA BOLACHAS
+    // 3 PARA FRIOS
+    // 4 PARA HIGIÊNE
+    // 0 PARA OUTROS
+    private int quantidade;
+    private float preco;
 
-    public Item(String nome, Categoria categoria, int quantidade, float preco) {
+    public Item(String nome, int categoria, int quantidade, float preco) {
         setNome(nome);
         setCategoria(categoria);
         setQuantidade(quantidade);
@@ -21,11 +26,11 @@ public class Item {
         this.nome = nome;
     }
 
-    public Categoria getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 

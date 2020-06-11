@@ -1,21 +1,15 @@
 package com.rodmor.listadecompras;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
-import android.content.Intent;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import static com.rodmor.listadecompras.Categoria.BOLACHA;
-import static com.rodmor.listadecompras.Categoria.CONDIMENTO;
-import static com.rodmor.listadecompras.Categoria.FRIO;
-import static com.rodmor.listadecompras.Categoria.HIGIENE;
-import static com.rodmor.listadecompras.Categoria.OUTROS;
 
 public class AdicionarItem extends AppCompatActivity {
 
@@ -29,13 +23,13 @@ public class AdicionarItem extends AppCompatActivity {
     }
 
     public void addItens(View view) {
-        TextView quant = findViewById(R.id.quantidade);
+        TextView quant = findViewById(R.id.text_quantidade);
         int antigo = Integer.parseInt(quant.getText().toString())+1;
         quant.setText(""+antigo);
     }
 
     public void rmItens(View view) {
-        TextView quant = findViewById(R.id.quantidade);
+        TextView quant = findViewById(R.id.text_quantidade);
         int antigo = Integer.parseInt(quant.getText().toString());
         if (antigo > 1){
             antigo--;
@@ -48,38 +42,48 @@ public class AdicionarItem extends AppCompatActivity {
     public void adicionarItem(View view) {
 
         // Busca das informações na tela
-        EditText textNome = findViewById(R.id.editNome);
-        RadioGroup radioCategoria = findViewById(R.id.radioCategoria);
-        Categoria categoria;
+        EditText textNome = findViewById(R.id.edit_nome);
+        String nome = textNome.getText().toString();
+
+        RadioGroup radioCategoria = findViewById(R.id.radio_categoria);
+        int categoria;
         switch (radioCategoria.getCheckedRadioButtonId()) {
-            case R.id.radioButtonCond:
-                categoria = CONDIMENTO;
+            case R.id.radio_button_cond:
+                categoria = 1;
                 break;
-            case R.id.radioButtonBol:
-                categoria = BOLACHA;
+            case R.id.radio_button_bol:
+                categoria = 2;
                 break;
-            case R.id.radioButtonFrio:
-                categoria = FRIO;
+            case R.id.radio_button_frio:
+                categoria = 3;
                 break;
-            case R.id.radioButtonHigi:
-                categoria = HIGIENE;
+            case R.id.radio_button_higi:
+                categoria = 4;
                 break;
             default:
-                categoria = OUTROS;
+                categoria = 0;
         }
-        TextView textQuant = findViewById(R.id.quantidade);
-        EditText textPreco = findViewById(R.id.editPreco);
+
+        TextView textQuant = findViewById(R.id.text_quantidade);
+        int quant = Integer.parseInt(textQuant.getText().toString());
+
+        EditText textPreco = findViewById(R.id.edit_preco);
+        float preco;
+        if (!textPreco.getText().toString().isEmpty()) {
+            preco = Float.parseFloat(textPreco.getText().toString());
+        } else {
+            preco = Float.parseFloat(textPreco.getHint().toString());
+        }
+
+        Item novoItem = new Item(nome,categoria,quant,preco);
 
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getWritableDatabase();
 
-        ContentValues ctv = new ContentValues();
-        ctv.put("nome", textNome.getText().toString());
-        ctv.put("categoria", categoria.toString());
-        ctv.put("quantidade", textQuant.getText().toString());
-        ctv.put("valor", textPreco.getText().toString());
+        db.insert(banco, novoItem);
 
-        banco.insert("lista", null, ctv);
+        // TODO: adicionar dialog com "ok"
+
         finish();
     }
 }

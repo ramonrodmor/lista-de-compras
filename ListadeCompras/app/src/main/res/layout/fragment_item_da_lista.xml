@@ -3,87 +3,115 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ItemDaLista">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:layout_height="50dp"
+    tools:context=".FragmentoItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/nome"
-            android:layout_width="wrap_content"
+            android:id="@+id/frag_nome"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Nome"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frag_text_preco"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/first_names" />
 
         <TextView
-            android:id="@+id/textPreco"
+            android:id="@+id/frag_text_preco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="R$"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/nome"
+            app:layout_constraintEnd_toStartOf="@+id/frag_preco"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/preco"
+            android:id="@+id/frag_preco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="1,25"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textPreco"
+            app:layout_constraintEnd_toStartOf="@+id/frag_text_quant"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textQuant"
+            android:id="@+id/frag_text_quant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Quant.: "
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/preco"
+            app:layout_constraintEnd_toStartOf="@+id/frag_botao_menos"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/botaoMenos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
+            android:id="@+id/frag_botao_menos"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/botao_menos"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textQuant"
+            app:layout_constraintEnd_toStartOf="@+id/frag_quant"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/quant"
+            android:id="@+id/frag_quant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="2"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/botaoMenos"
+            app:layout_constraintEnd_toStartOf="@+id/frag_botao_mais"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/botaoMais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="+"
+            android:id="@+id/frag_botao_mais"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/botao_mais"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/quant"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/frag_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frag_preco" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
