@@ -12,7 +12,6 @@
     <!-- Tela de compras -->
     <string name="title_activity_compras">Compras</string>
     <string name="soma_das_compras">Total das compras:</string>
-    <string name="text_rs">" "R$" "</string>
 
     <!-- Tela de adicionar itens -->
     <string name="nome_item">Nome do item</string>
@@ -26,5 +25,9 @@
     <string name="salvar_lista">Salvar lista</string>
     <string name="dialog_adicionado">O item foi adicionado!</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Adapter de item da lista -->
+    <string name="text_quant">Qt.</string>
+
+    <!-- Gerais -->
+    <string name="text_rs">" "R$" "</string>
 </resources>

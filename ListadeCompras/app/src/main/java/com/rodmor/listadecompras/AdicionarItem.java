@@ -1,9 +1,7 @@
 package com.rodmor.listadecompras;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class AdicionarItem extends AppCompatActivity {
+
+    public static int CONDIMENTO = 1, BOLACHA = 2, FRIO = 3, HIGIENE = 4, OUTROS = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +49,19 @@ public class AdicionarItem extends AppCompatActivity {
         int categoria;
         switch (radioCategoria.getCheckedRadioButtonId()) {
             case R.id.radio_button_cond:
-                categoria = 1;
+                categoria = CONDIMENTO;
                 break;
             case R.id.radio_button_bol:
-                categoria = 2;
+                categoria = BOLACHA;
                 break;
             case R.id.radio_button_frio:
-                categoria = 3;
+                categoria = FRIO;
                 break;
             case R.id.radio_button_higi:
-                categoria = 4;
+                categoria = HIGIENE;
                 break;
             default:
-                categoria = 0;
+                categoria = OUTROS;
         }
 
         TextView textQuant = findViewById(R.id.text_quantidade);
@@ -72,7 +72,7 @@ public class AdicionarItem extends AppCompatActivity {
         if (!textPreco.getText().toString().isEmpty()) {
             preco = Float.parseFloat(textPreco.getText().toString());
         } else {
-            preco = Float.parseFloat(textPreco.getHint().toString());
+            preco = 0.00f;
         }
 
         Item novoItem = new Item(nome,categoria,quant,preco);

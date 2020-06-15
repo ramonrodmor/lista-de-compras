@@ -41,8 +41,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d("DBHelper", "onUpgrade");
     }
 
-    public List<Item> select(SQLiteDatabase banco, String ordem) {
-        Cursor cursor = banco.rawQuery(("SELECT nome, categoria, quantidade, preco FROM lista ORDER BY " + ordem), null);
+    public List<Item> select(SQLiteDatabase banco, String ordem1, String ordem2) {
+        Cursor cursor = banco.rawQuery(("SELECT nome, categoria, quantidade, preco FROM lista ORDER BY " + ordem1 + ", " + ordem2), null);
 
         List<Item> listaItens = new ArrayList<Item>();
 

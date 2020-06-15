@@ -7,22 +7,26 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lista extends AppCompatActivity {
 
-    FragmentTransaction transaction;
-    FragmentManager manager = getSupportFragmentManager();
+    ListView listaDeItens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
+
+        listaDeItens = (ListView) findViewById(R.id.list_view);
     }
 
     /** Chamada da tela de adição de itens */
@@ -38,25 +42,11 @@ public class Lista extends AppCompatActivity {
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getReadableDatabase();
 
-        List<Item> listaItens = db.select(banco, "nome");
-        List<FragmentoItem> listaFragmentos = new ArrayList<FragmentoItem>();
+        List<Item> itens = db.select(banco, "categoria", "nome");
+        Log.d("ListItens", "Qtd: " + String.valueOf(itens.size()));
+        List<MeuAdapter> listAdapter = new ArrayList<MeuAdapter>();
+        MeuAdapter adapter = new MeuAdapter(itens, this);
+        listaDeItens.setAdapter(adapter);
 
-        for (int i = 0; i < listaItens.size(); i++) {
-
-            // TODO: testar listviews em vez de fragments
-            FragmentoItem fragmento = new FragmentoItem(listaItens.get(i));
-            transaction = manager.beginTransaction();
-            transaction.add(R.id.fragment_container, fragmento, null);
-            transaction.commit();
-
-            //TextView fragnome = frag.findViewById(R.id.frag_nome);
-            //fragnome.setText(listaItens.get(i).getNome());
-
-//            fragmento.setNome(listaItens.get(i).getNome());
-//            fragmento.setQuant(listaItens.get(i).getQuantidade());
-//            fragmento.setPreco(listaItens.get(i).getPreco());
-
-            listaFragmentos.add(fragmento);
-        }
     }
 }

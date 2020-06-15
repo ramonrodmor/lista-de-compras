@@ -3,11 +3,6 @@ package com.rodmor.listadecompras;
 public class Item {
     private String nome;
     private int categoria;
-    // 1 PARA CONDIMENTOS
-    // 2 PARA BOLACHAS
-    // 3 PARA FRIOS
-    // 4 PARA HIGIÊNE
-    // 0 PARA OUTROS
     private int quantidade;
     private float preco;
 
