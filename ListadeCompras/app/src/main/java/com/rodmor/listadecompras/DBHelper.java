@@ -1,16 +1,11 @@
 package com.rodmor.listadecompras;
 
-import android.animation.StateListAnimator;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "nome VARCHAR (255)," +
                 "categoria INTEGER," +
                 "quantidade INTEGER," +
-                "preco FLOAT" +
+                "preco FLOAT," +
+                "selecionado INTEGER" +
                 ");";
         db.execSQL(sqlLista);
     }
@@ -42,18 +38,20 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public List<Item> select(SQLiteDatabase banco, String ordem1, String ordem2) {
-        Cursor cursor = banco.rawQuery(("SELECT nome, categoria, quantidade, preco FROM lista ORDER BY " + ordem1 + ", " + ordem2), null);
+        Cursor cursor = banco.rawQuery(("SELECT id, nome, categoria, quantidade, preco, selecionado FROM lista ORDER BY " + ordem1 + ", " + ordem2), null);
 
         List<Item> listaItens = new ArrayList<Item>();
 
         if (cursor.moveToFirst()) {
             do {
+                int valorId = (cursor.getInt(cursor.getColumnIndex("id")));
                 String valorNome = (cursor.getString(cursor.getColumnIndex("nome")));
                 int valorCategoria = (cursor.getInt(cursor.getColumnIndex("categoria")));
                 int valorQuantidade = (cursor.getInt(cursor.getColumnIndex("quantidade")));
                 float valorValor = (cursor.getFloat(cursor.getColumnIndex("preco")));
+                int valorSelecionado = (cursor.getInt(cursor.getColumnIndex("selecionado")));
 
-                Item item = new Item(valorNome, valorCategoria, valorQuantidade, valorValor);
+                Item item = new Item(valorId, valorNome, valorCategoria, valorQuantidade, valorValor, valorSelecionado);
                 listaItens.add(item);
 
             } while (cursor.moveToNext());
@@ -62,20 +60,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return listaItens;
     }
 
-    public List<Item> select(SQLiteDatabase banco, String where, String valor, String ordem) {
-        Cursor cursor = banco.rawQuery(("SELECT nome, categoria, quantidade, preco FROM lista WHERE " + where + "= '" + valor + "' ORDER BY " + ordem), null);
+    public List<Item> selectCompras(SQLiteDatabase banco, String ordem1, String ordem2) {
+        Cursor cursor = banco.rawQuery(("SELECT id, nome, categoria, quantidade, preco, selecionado FROM lista ORDER BY " + ordem1 + ", " + ordem2), null);
 
         List<Item> listaItens = new ArrayList<Item>();
 
         if (cursor.moveToFirst()) {
             do {
+                int valorId = (cursor.getInt(cursor.getColumnIndex("id")));
                 String valorNome = (cursor.getString(cursor.getColumnIndex("nome")));
                 int valorCategoria = (cursor.getInt(cursor.getColumnIndex("categoria")));
                 int valorQuantidade = (cursor.getInt(cursor.getColumnIndex("quantidade")));
                 float valorValor = (cursor.getFloat(cursor.getColumnIndex("preco")));
+                int valorSelecionado = (cursor.getInt(cursor.getColumnIndex("selecionado")));
 
-                Item item = new Item(valorNome, valorCategoria, valorQuantidade, valorValor);
-                listaItens.add(item);
+                Item item = new Item(valorId, valorNome, valorCategoria, valorQuantidade, valorValor, valorSelecionado);
+                if (item.getQuantidade() > 0){
+                    listaItens.add(item);
+                }
 
             } while (cursor.moveToNext());
         }
@@ -83,13 +85,47 @@ public class DBHelper extends SQLiteOpenHelper {
         return listaItens;
     }
 
-    public void insert (SQLiteDatabase banco, Item item) {
+    public void insert(SQLiteDatabase banco, Item item) {
         ContentValues ctv = new ContentValues();
         ctv.put("nome", item.getNome());
         ctv.put("categoria", item.getCategoria());
         ctv.put("quantidade", item.getQuantidade());
         ctv.put("preco", item.getPreco());
+        ctv.put("selecionado", item.getSelecionado());
 
         banco.insert("lista", null, ctv);
+    }
+
+    public void updateQtd(SQLiteDatabase banco, int id, int quant) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("quantidade", quant);
+
+        banco.update("lista", ctv, "id="+id, null);
+    }
+
+    public void updatePreco(SQLiteDatabase banco, int id, float preco) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("preco", preco);
+
+        banco.update("lista", ctv, "id="+id, null);
+    }
+
+    public void updateSelecao(SQLiteDatabase banco, int id, int selecionado) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("selecionado", selecionado);
+
+        banco.update("lista", ctv, "id="+id, null);
+    }
+
+    public void updateSelecaoTotal(SQLiteDatabase banco) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("selecionado", 0);
+
+        banco.update("lista", ctv, null, null);
+    }
+
+    public void deleteVazios(SQLiteDatabase banco) {
+        String avulso = "avulso";
+        banco.delete("lista", "nome LIKE '"+avulso+"'", null);
     }
 }

@@ -32,6 +32,7 @@
         android:ems="10"
         android:gravity="center_vertical"
         android:hint="@string/nome_item"
+        android:inputType="textPersonName"
         android:textColor="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
