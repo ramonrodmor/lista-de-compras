@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/compras_text_quant"
@@ -30,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/text_rs"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/compras_valor"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
         android:inputType="numberDecimal"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/compras_uncheck"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
         android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/text_quant"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/compras_quant"
         app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/compras_text_preco"
         app:layout_constraintTop_toTopOf="parent" />
@@ -127,7 +127,7 @@
         android:layout_height="2dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:background="@color/design_default_color_on_secondary"
+        android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/compras_text_quant"
         app:layout_constraintEnd_toEndOf="@+id/compras_valor"
         app:layout_constraintStart_toStartOf="parent"

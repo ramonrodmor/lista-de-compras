@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/frag_text_preco"
@@ -41,7 +41,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/text_rs"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/frag_preco"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center_vertical"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/frag_text_quant"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +68,7 @@
         android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/text_quant"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/frag_botao_menos"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +93,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/frag_botao_mais"
         app:layout_constraintTop_toTopOf="parent" />
