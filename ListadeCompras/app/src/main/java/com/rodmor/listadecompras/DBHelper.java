@@ -30,6 +30,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "selecionado INTEGER" +
                 ");";
         db.execSQL(sqlLista);
+
+        String sqlVariaveis = "CREATE TABLE IF NOT EXISTS variaveis (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome VARCHAR (255)," +
+                "valor FLOAT" +
+                ");";
+        db.execSQL(sqlVariaveis);
     }
 
     @Override
@@ -127,5 +134,21 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteVazios(SQLiteDatabase banco) {
         String avulso = "avulso";
         banco.delete("lista", "nome LIKE '"+avulso+"'", null);
+    }
+
+    //TODO: criar duas variávies: uma de limite de compras e uma do valor da soma atual das compras
+    public void insertVariaveis(SQLiteDatabase banco, String nome, float valor) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("nome", nome);
+        ctv.put("valor", valor);
+
+        banco.insert("variaveis", null, ctv);
+    }
+
+    public void updateVariaveis(SQLiteDatabase banco, String nome, float valor) {
+        ContentValues ctv = new ContentValues();
+        ctv.put("valor", valor);
+
+        banco.update("variavies", ctv, "nome LIKE '"+nome+"'", null);
     }
 }

@@ -62,6 +62,9 @@ public class AdicionarItem extends AppCompatActivity {
             case R.id.radio_button_higi:
                 categoria = HIGIENE;
                 break;
+            case R.id.radio_button_outros:
+                categoria = OUTROS;
+                break;
             default:
                 categoria = OUTROS;
         }

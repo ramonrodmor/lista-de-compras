@@ -18,14 +18,20 @@
     <!-- Tela de adicionar itens -->
     <string name="nome_item">Nome do item</string>
     <string name="categoria_item">Selecione a categoria do item: </string>
-    <string name="cat_condimentos">Condimento</string>
+    <string name="cat_condimentos">Condimentos e temperos</string>
     <string name="cat_bolacha">Bolachas e pães</string>
     <string name="cat_frios">Frios e carnes</string>
     <string name="cat_higiene">Higiene e limpeza</string>
+    <string name="cat_outros">Outros</string>
     <string name="quant_item">Quantidade: </string>
     <string name="preco_item">Preço: </string>
     <string name="salvar_lista">Salvar lista</string>
     <string name="dialog_adicionado">O item foi adicionado!</string>
+
+    <!-- Tela de configurações -->
+    <string name="text_valor_limite">Valor limite para compras: </string>
+    <string name="text_fazer_backup">Fazer backup dos dados</string>
+    <string name="text_restaurar_backup">Restaurar dados</string>
 
     <!-- Adapter de item da lista -->
     <string name="text_quant">Qt.</string>
