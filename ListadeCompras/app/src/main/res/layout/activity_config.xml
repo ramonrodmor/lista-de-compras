@@ -17,7 +17,7 @@
         android:text="@string/text_rs"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/text_valor_limite"
+        app:layout_constraintStart_toEndOf="@+id/text_valor_meta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_valor_limite"
+        android:id="@+id/text_valor_meta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -79,4 +79,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/edit_limite_valor" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/check"
+        android:onClick="atualizaMeta"
+        app:layout_constraintStart_toEndOf="@+id/edit_limite_valor"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,4 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Compras.class);
         startActivity(intent);
     }
+
+    /** Chamada da tela de configurações */
+    public void iniciarConfig(View view) {
+        Intent intent = new Intent(getApplicationContext(), Config.class);
+        startActivity(intent);
+    }
 }

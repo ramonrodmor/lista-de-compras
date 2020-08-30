@@ -29,14 +29,20 @@ public class DBHelper extends SQLiteOpenHelper {
                 "preco FLOAT," +
                 "selecionado INTEGER" +
                 ");";
-        db.execSQL(sqlLista);
 
         String sqlVariaveis = "CREATE TABLE IF NOT EXISTS variaveis (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome VARCHAR (255)," +
                 "valor FLOAT" +
                 ");";
+
+        String sqlLimite = "INSERT INTO variaveis (nome, valor) VALUES ('meta', 0.0);";
+        String sqlSoma = "INSERT INTO variaveis (nome, valor) VALUES ('soma', 0.0);";
+
+        db.execSQL(sqlLista);
         db.execSQL(sqlVariaveis);
+        db.execSQL(sqlLimite);
+        db.execSQL(sqlSoma);
     }
 
     @Override
@@ -136,13 +142,18 @@ public class DBHelper extends SQLiteOpenHelper {
         banco.delete("lista", "nome LIKE '"+avulso+"'", null);
     }
 
-    //TODO: criar duas variávies: uma de limite de compras e uma do valor da soma atual das compras
-    public void insertVariaveis(SQLiteDatabase banco, String nome, float valor) {
-        ContentValues ctv = new ContentValues();
-        ctv.put("nome", nome);
-        ctv.put("valor", valor);
-
-        banco.insert("variaveis", null, ctv);
+    public float selectVariaveis(SQLiteDatabase banco, String nome) {
+        Cursor cursor = banco.rawQuery(("SELECT valor FROM lista WHERE nome LIKE '"+nome+"'"), null);
+        float valor;
+        if (cursor.moveToFirst()) {
+            do {
+                valor = (cursor.getFloat(cursor.getColumnIndex("valor")));
+            } while (cursor.moveToNext());
+        // Se o cursor estiver vazio retorna -1
+        } else {
+            valor = -1;
+        }
+        return valor;
     }
 
     public void updateVariaveis(SQLiteDatabase banco, String nome, float valor) {

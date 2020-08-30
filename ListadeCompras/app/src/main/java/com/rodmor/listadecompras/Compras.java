@@ -19,22 +19,36 @@ import java.util.List;
 public class Compras extends AppCompatActivity {
 
     DecimalFormat nf = new DecimalFormat("##0.00");
-    float valorLimite = 200.0f;
-    TextView textValorTotal;
-    TextView textRs;
+    float valorMeta, valorCompras;
+    TextView textValorMeta, textValorTotal;
+    TextView textRs2;
     ListView listaDeCompras;
     List<Item> itens = null;
 
-    // TODO: trabalhar scrols views
+    //Variáveis de consulta ao banco
+    String limite = "limite";
+    String soma = "soma";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compras);
 
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getReadableDatabase();
+
+        valorMeta = db.selectVariaveis(banco,limite);
+        if (valorMeta<0) valorMeta=0;
+        valorCompras = db.selectVariaveis(banco,soma);
+        if (valorCompras<0) valorCompras=0;
+
+        banco.close();
+
         textValorTotal = findViewById(R.id.text_valor_total);
-        textValorTotal.setText(nf.format(0f));
-        textRs = findViewById(R.id.text_rs);
+        textValorTotal.setText(nf.format(valorCompras));
+        textValorMeta = findViewById(R.id.text_valor_meta);
+        textValorMeta.setText(nf.format(valorMeta));
+        textRs2 = findViewById(R.id.text_rs2);
         atualizaCorSaldo();
 
         listaDeCompras = findViewById(R.id.compras_view);
@@ -113,18 +127,21 @@ public class Compras extends AppCompatActivity {
         atualizaSelecaoBanco(itens.get(indice).getId(), itens.get(indice).getSelecionado());
     }
 
+    //TODO: ATUALIZAR FUNÇÃO
     public void somaTotal(float preco) {
         float novoTotal = Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) + preco;
         textValorTotal.setText(nf.format(novoTotal));
         atualizaCorSaldo();
     }
 
+    //TODO: ATUALIZAR FUNÇÃO
     public void diminuiTotal(float preco) {
         float novoTotal = Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) - preco;
         textValorTotal.setText(nf.format(novoTotal));
         atualizaCorSaldo();
     }
 
+    //TODO: ATUALIZAR FUNÇÃO
     public void somaAvulso(View v){
         // pega linha em que o click foi dado
         ConstraintLayout vwParentRow = (ConstraintLayout) v.getParent();
@@ -143,12 +160,12 @@ public class Compras extends AppCompatActivity {
     }
 
     public void atualizaCorSaldo() {
-        if (Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) > valorLimite) {
+        if (Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) > valorMeta) {
             textValorTotal.setTextColor(Color.RED);
-            textRs.setTextColor(Color.RED);
+            textRs2.setTextColor(Color.RED);
         } else {
             textValorTotal.setTextColor(Color.GREEN);
-            textRs.setTextColor(Color.GREEN);
+            textRs2.setTextColor(Color.GREEN);
         }
     }
 
@@ -166,6 +183,7 @@ public class Compras extends AppCompatActivity {
         banco.close();
     }
 
+    //TODO: ATUALIZAR DIALOG PEDINDO CONFIRMAÇÃO
     public void finalizarCompras(View v){
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getReadableDatabase();
@@ -185,7 +203,6 @@ public class Compras extends AppCompatActivity {
     }
 
     public void alertDialog(Context contexto, String titulo, String msg) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(contexto);
         builder.setMessage(msg);
         builder.setTitle(titulo);

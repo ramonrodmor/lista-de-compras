@@ -11,7 +11,8 @@
 
     <!-- Tela de compras -->
     <string name="title_activity_compras">Compras</string>
-    <string name="soma_das_compras">Total das compras:" "</string>
+    <string name="limite_compras">Meta:" "</string>
+    <string name="soma_das_compras">Total:" "</string>
     <string name="finalizar_compras">Finalizar</string>
     <string name="valor_avulso">Valor avulso:" "</string>
 
