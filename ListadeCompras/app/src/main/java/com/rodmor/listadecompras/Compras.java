@@ -34,24 +34,14 @@ public class Compras extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compras);
 
-        DBHelper db = new DBHelper(getBaseContext());
-        SQLiteDatabase banco = db.getReadableDatabase();
-
-        valorMeta = db.selectVariaveis(banco,limite);
-        if (valorMeta<0) valorMeta=0;
-        valorCompras = db.selectVariaveis(banco,soma);
-        if (valorCompras<0) valorCompras=0;
-
-        banco.close();
-
         textValorTotal = findViewById(R.id.text_valor_total);
-        textValorTotal.setText(nf.format(valorCompras));
         textValorMeta = findViewById(R.id.text_valor_meta);
-        textValorMeta.setText(nf.format(valorMeta));
         textRs2 = findViewById(R.id.text_rs2);
-        atualizaCorSaldo();
-
         listaDeCompras = findViewById(R.id.compras_view);
+
+        atualizaMeta();
+        atualizaCompras();
+        atualizaCorSaldo();
     }
 
     public void onResume() {
@@ -61,15 +51,13 @@ public class Compras extends AppCompatActivity {
         SQLiteDatabase banco = db.getReadableDatabase();
 
         itens = db.selectCompras(banco, "categoria", "nome");
-        for (int i=0; i<itens.size(); i++) {
-            if (itens.get(i).getSelecionado() == 1) {
-                somaTotal(itens.get(i).getPreco() * (float) itens.get(i).getQuantidade());
-            }
-        }
         AdapterItemCompras adapter = new AdapterItemCompras(itens, this);
         listaDeCompras.setAdapter(adapter);
 
         banco.close();
+
+        atualizaMeta();
+        atualizaCompras();
     }
 
     public void clickCheck(View v) {
@@ -127,18 +115,53 @@ public class Compras extends AppCompatActivity {
         atualizaSelecaoBanco(itens.get(indice).getId(), itens.get(indice).getSelecionado());
     }
 
-    //TODO: ATUALIZAR FUNÇÃO
-    public void somaTotal(float preco) {
-        float novoTotal = Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) + preco;
-        textValorTotal.setText(nf.format(novoTotal));
-        atualizaCorSaldo();
+    public void atualizaMeta() {
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getReadableDatabase();
+
+        valorMeta = db.selectVariaveis(banco,limite);
+        if (valorMeta<0) valorMeta=0;
+        textValorMeta.setText(nf.format(valorMeta));
+
+        db.close();
     }
 
-    //TODO: ATUALIZAR FUNÇÃO
+    public void atualizaCompras() {
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getReadableDatabase();
+
+        valorCompras = db.selectVariaveis(banco,soma);
+        if (valorCompras<0) valorCompras=0;
+        textValorTotal.setText(nf.format(valorCompras));
+        atualizaCorSaldo();
+
+        db.close();
+    }
+
+    public void somaTotal(float preco) {
+        float novoTotal = Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) + preco;
+
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getReadableDatabase();
+
+        db.updateVariaveis(banco, soma, novoTotal);
+        db.close();
+
+        //TODO: TESTAR SEM ATUALIZAÇÃO
+        atualizaCompras();
+    }
+
     public void diminuiTotal(float preco) {
         float novoTotal = Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) - preco;
-        textValorTotal.setText(nf.format(novoTotal));
-        atualizaCorSaldo();
+
+        DBHelper db = new DBHelper(getBaseContext());
+        SQLiteDatabase banco = db.getReadableDatabase();
+
+        db.updateVariaveis(banco, soma, novoTotal);
+        db.close();
+
+        //TODO: TESTAR SEM ATUALIZAÇÃO
+        atualizaCompras();
     }
 
     //TODO: ATUALIZAR FUNÇÃO
@@ -160,7 +183,7 @@ public class Compras extends AppCompatActivity {
     }
 
     public void atualizaCorSaldo() {
-        if (Float.parseFloat(textValorTotal.getText().toString().replace(",",".")) > valorMeta) {
+        if (valorCompras > valorMeta) {
             textValorTotal.setTextColor(Color.RED);
             textRs2.setTextColor(Color.RED);
         } else {
