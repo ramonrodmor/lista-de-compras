@@ -163,8 +163,7 @@ public class Compras extends AppCompatActivity {
         //TODO: TESTAR SEM ATUALIZAÇÃO
         atualizaCompras();
     }
-
-    //TODO: ATUALIZAR FUNÇÃO
+    
     public void somaAvulso(View v){
         // pega linha em que o click foi dado
         ConstraintLayout vwParentRow = (ConstraintLayout) v.getParent();
@@ -179,6 +178,7 @@ public class Compras extends AppCompatActivity {
         editValor.setText("");
         Item itemNovo = new Item(valor);
         adicionaNoBanco(itemNovo);
+        somaTotal(itemNovo.getPreco());
         onResume();
     }
 
