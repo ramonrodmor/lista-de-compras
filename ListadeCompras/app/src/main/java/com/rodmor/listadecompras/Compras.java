@@ -26,7 +26,7 @@ public class Compras extends AppCompatActivity {
     List<Item> itens = null;
 
     //Variáveis de consulta ao banco
-    String limite = "limite";
+    String meta = "meta";
     String soma = "soma";
 
     @Override
@@ -119,8 +119,8 @@ public class Compras extends AppCompatActivity {
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getReadableDatabase();
 
-        valorMeta = db.selectVariaveis(banco,limite);
-        if (valorMeta<0) valorMeta=0;
+        valorMeta = db.selectVariaveis(banco, meta);
+        //if (valorMeta<0) valorMeta=0;
         textValorMeta.setText(nf.format(valorMeta));
 
         db.close();
@@ -131,7 +131,7 @@ public class Compras extends AppCompatActivity {
         SQLiteDatabase banco = db.getReadableDatabase();
 
         valorCompras = db.selectVariaveis(banco,soma);
-        if (valorCompras<0) valorCompras=0;
+        //if (valorCompras<0) valorCompras=0;
         textValorTotal.setText(nf.format(valorCompras));
         atualizaCorSaldo();
 
@@ -147,7 +147,6 @@ public class Compras extends AppCompatActivity {
         db.updateVariaveis(banco, soma, novoTotal);
         db.close();
 
-        //TODO: TESTAR SEM ATUALIZAÇÃO
         atualizaCompras();
     }
 
@@ -160,7 +159,6 @@ public class Compras extends AppCompatActivity {
         db.updateVariaveis(banco, soma, novoTotal);
         db.close();
 
-        //TODO: TESTAR SEM ATUALIZAÇÃO
         atualizaCompras();
     }
 
@@ -169,6 +167,7 @@ public class Compras extends AppCompatActivity {
         ConstraintLayout vwParentRow = (ConstraintLayout) v.getParent();
 
         EditText editValor = (EditText) vwParentRow.getViewById(R.id.compras_valor);
+        TextView comprasValor = (TextView) vwParentRow.getViewById(R.id.compras_valor_quant);
         float valor;
         if (!editValor.getText().toString().isEmpty()) {
             valor = Float.parseFloat(editValor.getText().toString().replace(",","."));
@@ -176,9 +175,10 @@ public class Compras extends AppCompatActivity {
             valor = 0.00f;
         }
         editValor.setText("");
-        Item itemNovo = new Item(valor);
+        float quant = Float.parseFloat(comprasValor.getText().toString());
+        Item itemNovo = new Item(valor, (int)quant);
         adicionaNoBanco(itemNovo);
-        somaTotal(itemNovo.getPreco());
+        somaTotal(itemNovo.getPreco()*quant);
         onResume();
     }
 
@@ -212,6 +212,7 @@ public class Compras extends AppCompatActivity {
         SQLiteDatabase banco = db.getReadableDatabase();
         db.updateSelecaoTotal(banco);
         db.deleteVazios(banco);
+        db.updateVariaveis(banco,"soma", 0.0f);
         banco.close();
         String titulo = "Compra finalizada";
         String msg = "Compra finalizada com sucesso! Sua lista de compras foi redefinida.";
@@ -239,5 +240,22 @@ public class Compras extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void addItens(View view) {
+        TextView quant = findViewById(R.id.compras_valor_quant);
+        int antigo = Integer.parseInt(quant.getText().toString())+1;
+        quant.setText(String.valueOf(antigo));
+    }
+
+    public void rmItens(View view) {
+        TextView quant = findViewById(R.id.compras_valor_quant);
+        int antigo = Integer.parseInt(quant.getText().toString());
+        if (antigo > 1){
+            antigo--;
+            quant.setText(String.valueOf(antigo));
+        } else {
+            quant.setText("0");
+        }
     }
 }

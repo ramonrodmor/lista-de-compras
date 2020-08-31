@@ -16,6 +16,9 @@
         <activity
             android:name=".Compras"
             android:label="@string/title_activity_compras" />
+        <activity
+            android:name=".Config"
+            android:label="Configurações" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

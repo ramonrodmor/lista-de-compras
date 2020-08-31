@@ -39,4 +39,5 @@
 
     <!-- Gerais -->
     <string name="text_rs">R$" "</string>
+    <string name="hint_valor">0,00</string>
 </resources>

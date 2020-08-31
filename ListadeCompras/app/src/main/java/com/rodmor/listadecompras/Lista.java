@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
-//TODO: ENTENDER -> não permitir alteração de itens selecionados
+
 public class Lista extends AppCompatActivity {
 
     ListView listaDeItens;

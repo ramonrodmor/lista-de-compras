@@ -8,11 +8,11 @@ public class Item {
     private float preco;
     private int selecionado;
 
-    public Item(float preco) {
+    public Item(float preco, int quantidade) {
         setId(0);
         setNome("avulso");
         setCategoria(0);
-        setQuantidade(1);
+        setQuantidade(quantidade);
         setPreco(preco);
         setSelecionado(1);
     }

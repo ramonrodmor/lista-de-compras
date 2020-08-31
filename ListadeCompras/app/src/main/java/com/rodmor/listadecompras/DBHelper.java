@@ -143,7 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public float selectVariaveis(SQLiteDatabase banco, String nome) {
-        Cursor cursor = banco.rawQuery(("SELECT valor FROM lista WHERE nome LIKE '"+nome+"'"), null);
+        Cursor cursor = banco.rawQuery(("SELECT valor FROM variaveis WHERE nome LIKE '"+nome+"'"), null);
         float valor;
         if (cursor.moveToFirst()) {
             do {
@@ -157,9 +157,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void updateVariaveis(SQLiteDatabase banco, String nome, float valor) {
-        ContentValues ctv = new ContentValues();
-        ctv.put("valor", valor);
-
-        banco.update("variavies", ctv, "nome LIKE '"+nome+"'", null);
+        banco.execSQL("UPDATE variaveis SET valor = "+valor+" WHERE nome LIKE '"+nome+"'");
     }
 }

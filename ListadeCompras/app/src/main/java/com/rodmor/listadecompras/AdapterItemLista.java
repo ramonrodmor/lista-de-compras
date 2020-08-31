@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -42,12 +43,21 @@ public class AdapterItemLista extends BaseAdapter {
         TextView nome = view.findViewById(R.id.frag_nome);
         TextView preco = view.findViewById(R.id.frag_preco);
         quant = view.findViewById(R.id.frag_quant);
+        Button mais = view.findViewById(R.id.frag_botao_mais);
+        Button menos = view.findViewById(R.id.frag_botao_menos);
 
         //populando as Views
         id.setText(String.valueOf(item.getId()));
         nome.setText(item.getNome());
         preco.setText(nf.format(item.getPreco()));
         quant.setText(String.valueOf(item.getQuantidade()));
+
+        if (item.getSelecionado()==1) {
+            mais.setVisibility(View.GONE);
+            mais.setClickable(false);
+            menos.setVisibility(View.GONE);
+            menos.setClickable(false);
+        }
 
         return view;
     }

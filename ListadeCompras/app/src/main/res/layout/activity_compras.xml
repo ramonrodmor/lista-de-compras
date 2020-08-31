@@ -69,11 +69,14 @@
                 android:id="@+id/space2"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="0dp"
-                tools:layout_conversion_absoluteWidth="250dp"
-                tools:layout_editor_absoluteY="15dp" />
+                tools:layout_conversion_absoluteWidth="250dp" />
 
             <TextView
                 android:id="@+id/text_total"
@@ -144,41 +147,92 @@
         android:id="@+id/compras_valor"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:gravity="center"
-        android:hint="0,00"
+        android:hint="@string/hint_valor"
         android:inputType="number|numberDecimal"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/compras_texto_avulso" />
 
     <TextView
         android:id="@+id/compras_texto_avulso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="@string/valor_avulso"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
-        app:layout_constraintEnd_toStartOf="@+id/compras_valor"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
+    <TextView
+        android:id="@+id/compras_text_quant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="@string/text_quant"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/compras_valor"
+        app:layout_constraintStart_toEndOf="@+id/compras_valor"
+        app:layout_constraintTop_toBottomOf="@+id/compras_view" />
+
     <Button
-        android:id="@+id/compras_botao_mais"
+        android:id="@+id/compras_rm"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:background="@drawable/botao_menos"
+        android:onClick="rmItens"
+        app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
+        app:layout_constraintStart_toEndOf="@+id/compras_text_quant"
+        app:layout_constraintTop_toBottomOf="@+id/compras_view" />
+
+    <TextView
+        android:id="@+id/compras_valor_quant"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
+        app:layout_constraintStart_toEndOf="@+id/compras_rm"
+        app:layout_constraintTop_toBottomOf="@+id/compras_view" />
+
+    <Button
+        android:id="@+id/compras_add"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:background="@drawable/botao_mais"
+        android:onClick="addItens"
+        app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
+        app:layout_constraintStart_toEndOf="@+id/compras_valor_quant"
+        app:layout_constraintTop_toBottomOf="@+id/compras_view" />
+
+    <Button
+        android:id="@+id/compras_botao_add"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/check"
         android:onClick="somaAvulso"
         app:layout_constraintBottom_toTopOf="@+id/compras_botao_terminar"
-        app:layout_constraintStart_toEndOf="@+id/compras_valor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/compras_add"
         app:layout_constraintTop_toBottomOf="@+id/compras_view" />
+
 
     <Button
         android:id="@+id/compras_botao_terminar"

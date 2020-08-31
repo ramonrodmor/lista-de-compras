@@ -23,6 +23,12 @@ public class Config extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
+        editValorMeta = findViewById(R.id.edit_limite_valor);
+    }
+
+    public void onResume() {
+        super.onResume();
+
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getReadableDatabase();
 
@@ -31,12 +37,8 @@ public class Config extends AppCompatActivity {
 
         banco.close();
 
-        editValorMeta = findViewById(R.id.edit_limite_valor);
         editValorMeta.setText(nf.format(valorMeta));
-    }
 
-    public void onResume() {
-        super.onResume();
     }
 
     public void fazerBackup() {
