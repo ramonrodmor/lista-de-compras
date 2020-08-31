@@ -163,7 +163,7 @@ public class Compras extends AppCompatActivity {
         //TODO: TESTAR SEM ATUALIZAÇÃO
         atualizaCompras();
     }
-    
+
     public void somaAvulso(View v){
         // pega linha em que o click foi dado
         ConstraintLayout vwParentRow = (ConstraintLayout) v.getParent();
